@@ -17,6 +17,8 @@ COPY . .
 
 # test
 
+RUN dotnet test tests/tests.csproj
+
 # publish
 
 # Runtime stage
