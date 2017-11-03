@@ -17,6 +17,10 @@ COPY . .
 
 # test
 
+# Hack to trick the xunit runner to think it is inside of team city.
+# This kicks in enhanced team city integration
+ENV TEAMCITY_PROJECT_NAME=fake
+
 RUN dotnet test tests/tests.csproj
 
 # publish
