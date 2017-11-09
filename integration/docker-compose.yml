@@ -1,17 +1,25 @@
 version: '3.1'
 
+# We don't need to publish the ports unless we want to get to these endpoints from
+# the host.  Since we may run this environment multiple times simultaneously, we would
+# otherwise get a port-in-use error on the HOST port
+# Rule-of-thumb: don't publish ports in a ci environment
+#
+# Sample usage:
+# docker-compose up --force-recreate --abort-on-container-exit --build
+
 services:
     generator:
         build:
             context: .
         image: my-registry:55000/gen:ci-15
-        ports:
-            - 8080:80
+        # ports:
+        #     - 8080:80
 
     mail:
         image: mailhog/mailhog
-        ports:
-            - 8025:8025
+        # ports:
+        #     - 8025:8025
 
     integration:
         image: my-registry:55000/gen:integration-10
