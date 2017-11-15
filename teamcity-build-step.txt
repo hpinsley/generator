@@ -1,0 +1,5 @@
+image="my-registry:55000/gen:ci-%build.number%"
+
+docker build -t $image .
+
+docker push $image

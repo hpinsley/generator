@@ -1,0 +1,8 @@
+# Note that the build step is set to run in /integration
+
+docker-compose up \
+  --force-recreate \
+  --abort-on-container-exit \
+  --build
+
+docker-compose down
