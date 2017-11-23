@@ -9,6 +9,7 @@ using MailKit;
 using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.Extensions.Options;
 
 namespace api.Controllers
 {
@@ -16,8 +17,16 @@ namespace api.Controllers
     [Route("[action]")]
     public class GenerateController : Controller
     {
-        private const string MAIL_HOST = "mail";
-        private const int MAIL_PORT = 1025;
+        private readonly string MAIL_HOST;
+        private readonly int MAIL_PORT;
+
+        public GenerateController(IOptions<MailServerConfig> mailServerConfigAccessor)
+        {
+            var options = mailServerConfigAccessor.Value;
+
+            MAIL_HOST = options.Host;
+            MAIL_PORT = options.Port;
+        }
 
         [HttpPost]
         public async Task EmailRandomNames(Range range, string email = "test@fake.com")
