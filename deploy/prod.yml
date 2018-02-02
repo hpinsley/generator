@@ -3,11 +3,13 @@ version: '3.3'
 services:
     generator:
         image: my-registry:55000/gen:ci-${GENERATOR_BUILD_NUMBER-30}
-        ports:
-            - "${PORT_GENERATOR-80}:80"
         configs:
             - source: prodappsettings
               target: /publish/appsettings.json
+    proxy:
+        image: nginx
+        ports:
+            - "${PORT_GENERATOR-80}:80"
 
 configs:
     prodappsettings:

@@ -30,7 +30,7 @@ namespace api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "New2 Generate Random Data API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "Deploy 02 Generate Random Data API", Version = "v1" });
             });
 
             services.Configure<MailServerConfig>(Configuration.GetSection("mailserver"));
